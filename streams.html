@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cascading Streams</title>
+    <style>
+      /* Add styling for the container */
+      #stream-container {
+        width: 500px;
+        height: 500px;
+        position: relative;
+        margin: auto;
+      }
+
+      /* Add styling for the streams */
+      .stream {
+        width: 10px;
+        height: 100%;
+        position: absolute;
+        background-color: #EEE;
+        animation: fall 5s infinite;
+      }
+
+      /* Add styling for the drops */
+      .drop {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      /* Add animation for the streams */
+      @keyframes fall {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Create a container for the streams -->
+    <div id="stream-container"></div>
+
+    <script>
+      // Get a reference to the stream container
+      var container = document.getElementById("stream-container");
+
+      // Create a new stream every 50 milliseconds
+      setInterval(function() {
+        // Create a new stream
+        var stream = document.createElement("div");
+        stream.className = "stream";
+        container.appendChild(stream);
+
+        // Set a random color for the stream
+        var red = Math.floor(Math.random() * 256);
+        var green = Math.floor(Math.random() * 256);
+        var blue = Math.floor(Math.random() * 256);
+        var color = "rgb(" + red + "," + green + "," + blue + ")";
+        stream.style.backgroundColor = color;
+
+        // Set a random position for the stream
+        var left = Math.floor(Math.random() * container.offsetWidth);
+        stream.style.left = left + "px";
+
+        // Create a new drop every 50 milliseconds
+        setInterval(function() {
+          // Create a new drop
+          var drop = document.createElement("div");
+          drop.className = "drop";
+          stream.appendChild(drop);
+
+          // Set the color of the drop to match the stream
+          drop.style.backgroundColor = color;
+
+          // Set a random position for the drop
+          var top = Math.floor(Math.random() * container.offsetHeight);
+          drop.style.top = top + "px";
+        }, 50);
+      }, 50);
+    </script>
+  </body>
+</html>
